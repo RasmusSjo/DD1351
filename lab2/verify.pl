@@ -80,27 +80,26 @@ verify_rule([_, Statement2, impel(Row1, Row2)], _, Previous) :-
 
 
 % Negation elimination rule
-
-
-
+verify_rule([_, cont, negel(Row1, Row2)], _, Previous) :-
+    member([Row1, Statement, _], Previous),
+    member([Row2, neg(Statement), _], Previous).
 
 % Contradiction elimination
-
-
-
+verify_rule([_, _, contel(Row)], _, Previous) :-
+   member([Row, cont, _], Previous).
 
 % Negation negation introduction
-
-
-
+verify_rule([_, neg(neg(Statement)), negnegint(Row)], _, Previous) :-
+    member([Row, Statement, _], Previous).
 
 % Negation negation elimination
-
-
-
+verify_rule([_, Statement, negnegel(Row)], _, Previous) :-
+    member([Row, neg(neg(Statement)), _], Previous).
 
 % MT rule
-
+verify_rule([_, neg(Statement1), mt(Row1, Row2)], _, Previous) :-
+    member([Row1, imp(Statement1, Statement2), _], Previous),
+    member([Row2, neg(Statement2), _], Previous).
 
 
 
@@ -110,7 +109,7 @@ verify_rule([_, Statement2, impel(Row1, Row2)], _, Previous) :-
 
 
 % LEM rule
-
+verify_rule([_, or(Statement, neg(Statement)), lem], _, _).
 
 
 
