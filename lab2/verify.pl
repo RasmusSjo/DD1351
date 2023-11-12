@@ -7,9 +7,9 @@ verify(FileName) :-
     read(Proof),
     seen,
 
-    verify_proof().
+    valid_proof().
 
-verify_proof(Premise, Goal, Proof) :-
+valid_proof(Premise, Goal, Proof) :-
     verify_goal(Proof, Goal) ,
     check_proof(Proof, Premise, []), !.
 
@@ -28,6 +28,3 @@ verify_rule()
 verify_rule()
 
 verify_rule()
-
-
-
