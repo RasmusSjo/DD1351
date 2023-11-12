@@ -1,8 +1,9 @@
 [p, q].
 
-r.
+and(r, q).
 
 [
     [1, p, premise],
-    [2, q, premise]
+    [2, q, premise],
+    [3, and(r, q), andint(1, 2)]
 ].
