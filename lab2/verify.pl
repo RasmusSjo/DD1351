@@ -35,6 +35,9 @@ verify_rule([_, Statement, premise], Prems, _) :-
 verify_rule([_, Statement, copy(X)], _, Previous) :-
     member([X, Statement, _], Previous).
 
-
+% And introduction rule
+verify_rule([_, and(Statement1, Statement2), andint(X, Y)], _, Previous) :-
+    member([X, Statement1, _], Previous),
+    member([Y, Statement2, _], Previous).
 
 
