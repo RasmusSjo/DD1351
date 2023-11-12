@@ -1,11 +1,9 @@
-[p, q].
+[p, imp(p,q)].
 
-or(r,p).
+q.
 
 [
     [1, p, premise],
-    [2, q, premise],
-    [3, and(p, q), andint(1, 2)],
-    [4, p, andel1(3)],
-    [5, or(p,r), orint2(1)]
+    [2, imp(p,q), premise],
+    [3, q, impel(1, 2)]
 ].
