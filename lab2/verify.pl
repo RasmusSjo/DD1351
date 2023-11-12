@@ -37,8 +37,8 @@ verify_rule([_, Statement, copy(Row)], _, Previous) :-
 
 % And introduction rule
 verify_rule([_, and(Statement1, Statement2), andint(Row1, Row2)], _, Previous) :-
-    member([X, Statement1, _], Previous),
-    member([Y, Statement2, _], Previous).
+    member([Row1, Statement1, _], Previous),
+    member([Row2, Statement2, _], Previous).
 
 % And elimination rules
 verify_rule([_, Statement, andel1(Row)], _, Previous):-
