@@ -47,3 +47,9 @@ verify_rule([_, Statement, andel1(Row)], _, Previous):-
 verify_rule([_, Statement, andel2(Row)], _, Previous) :-
     member([Row, and(_, Statement), _], Previous).
 
+% Or introduction rules
+verify_rule([_, or(Statement, _), orint1(Row)], _, Previous):-
+    member([Row, Statement, _], Previous).
+
+verify_rule([_, or(_, Statement), orint2(Row)], _, Previous) :-
+    member([Row, Statement, _], Previous).
