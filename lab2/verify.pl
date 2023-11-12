@@ -29,8 +29,4 @@ verify_proof([Head|Tail], Prems, Previous) :-
 verify_rule([_, Statement, premise], Prems, _) :-
     member(Statement, Prems).
 
-verify_rule()
 
-verify_rule()
-
-verify_rule()
