@@ -33,6 +33,7 @@ verify_rule([_, Statement, premise], Prems, _) :-
 
 % Assumption rule
 % NOT TESTED
+% Verifies that box is valid(?)
 verify_rule([[Row, Statement, assumption]|Box], Prems, Previous) :-
     verify_proof(Box, Prems, [[Row, Statement, assumption]|Previous]).
 
@@ -60,9 +61,11 @@ verify_rule([_, or(_, Statement), orint2(Row)], _, Previous) :-
     member([Row, Statement, _], Previous).
 
 % Or elmination rule
-
-
-
+% NOT TESTED (little bit experimental, assuming Assumption rule verifies the box and tail of tail can be searched this way.)
+verify_rule([_, Statement, orel(Row1,Row2,Row3,Row4,Row5)], _, Previous) :-
+    member([Row1, or(A, B), _], Previous),
+    member([Row3, Statement, _], Previous|[Row2, A, assumption]),
+    member([Row5, Statement, _], Previous|[Row4, B, assumption]).
 
 % Implication introduction rule
 
