@@ -32,9 +32,9 @@ verify_rule([_, Statement, premise], Prems, _) :-
     member(Statement, Prems).
 
 % Assumption rule
-
-
-
+% NOT TESTED
+verify_rule([[Row, Statement, assumption]|Box], Prems, Previous) :-
+    verify_proof(Box, Prems, [[Row, Statement, assumption]|Previous]).
 
 % Copy rule
 verify_rule([_, Statement, copy(Row)], _, Previous) :-
