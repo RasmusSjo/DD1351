@@ -63,8 +63,8 @@ check(Transitions, Labels, State, [], ex(Statement)) :-
     verify_atleast_one_adjacent(Transitions, Labels, Adjacent_states, [], Statement).
     
 
-% AG q - q is true in every state
-check(_, _, State, Previous, ag(Statement)) :-
+% AG q - q is true in every state in every path
+check(_, _, State, Previous, ag(_)) :-
     member(State, Previous).
 
 check(Transitions, Labels, State, Previous, ag(Statement)) :-
@@ -74,16 +74,35 @@ check(Transitions, Labels, State, Previous, ag(Statement)) :-
     verify_all_adjacent(Transitions, Labels, Adjacent_states, [State|Previous], ag(Statement)).
 
 % EG q - q is true in every state in some path
-%check(Transitions, Labels, State, Previous, eg(Statement)) :-
+check(_, _, State, Previous, eg(_)) :-
+    member(State, Previous).
+
+check(Transitions, Labels, State, Previous, eg(Statement)) :-
+    \+ member(State, Previous),
+    check(Transitions, Labels, State, [], Statement),
+    state_variables(Transitions, State, Adjacent_states),
+    verify_atleast_one_adjacent(Transitions, Labels, Adjacent_states, [State|Previous], eg(Statement)).
 
 
 % AF q - every path will have q true eventually
-%check(Transitions, Labels, State, Previous, af(Statement)) :-
+check(Transitions, Labels, State, Previous, af(Statement)) :-
+    \+ member(State, Previous),
+    check(Transitions, Labels, State, [], Statement).
 
+check(Transitions, Labels, State, Previous, af(Statement)) :-
+    \+ member(State, Previous),
+    state_variables(Transitions, State, Adjacent_states),
+    verify_all_adjacent(Transitions, Labels, Adjacent_states,[State|Previous], af(Statement)).
 
-% EF q - there is a path where q will eventually be true
-%check(Transitions, Labels, State, Previous, ef(Statement1)) :-
+% EF q - there exists a path where q will eventually be true
+check(Transitions, Labels, State, Previous, ef(Statement)) :-
+    \+ member(State, Previous),
+    check(Transitions, Labels, State, [], Statement).
 
+check(Transitions, Labels, State, Previous, ef(Statement)) :-
+    \+ member(State, Previous),
+    state_variables(Transitions, State, Adjacent_states),
+    verify_atleast_one_adjacent(Transitions, Labels, Adjacent_states, [State|Previous], ef(Statement)).
 
 
 % ------------Utility methods------------
