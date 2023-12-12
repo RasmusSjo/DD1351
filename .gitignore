@@ -1,0 +1,7 @@
+# Random files
+*.DS_Store*
+
+# Ignore test files
+*valid*
+*invalid*
+*run_all_tests*
