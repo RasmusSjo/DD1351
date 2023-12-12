@@ -32,11 +32,11 @@ verify(Input) :-
 
 % Literals/atoms (numbers and strings with first character in lower case)
 check(_, Labels, State, [], Literal) :- 
-    state_variables(L, State, Variables),
+    state_variables(Labels, State, Variables),
     member(Literal, Variables).
 
 check(_, Labels, State, [], neg(Literal)) :-
-    state_variables(L, State, Variables),
+    state_variables(Labels, State, Variables),
     \+ member(Literal, Variables).
 
 
@@ -47,34 +47,34 @@ check(Transitions, Labels, State, [], and(Statement1, Statement2)) :-
 
 
 % Or
-check(Transitions, Labels, State, U, or(Statement1, Statement2)) :-
+check(Transitions, Labels, State, [], or(Statement1, Statement2)) :-
     check(Transitions, Labels, State, [], Statement1);
     check(Transitions, Labels, State, [], Statement2).
 
 
 % AX q - q is true in the next state
-check(Transitions, Labels, State, [], ax(Statement1, Statement2)) :-
+%check(Transitions, Labels, State, [], ax(Statement1, Statement2)) :-
 
 
 
 % EX q - q is true in some next state
-check(Transitions, Labels, State, U, ex(Statement1, Statement2)) :-
+%check(Transitions, Labels, State, U, ex(Statement1, Statement2)) :-
 
 
 % AG q - q is true in every state
-check(Transitions, Labels, State, U, ag(Statement1, Statement2)) :-
+%check(Transitions, Labels, State, U, ag(Statement1, Statement2)) :-
 
 
 % EG q - q is true in every state in some path
-check(Transitions, Labels, State, U, eg(Statement1, Statement2)) :-
+%check(Transitions, Labels, State, U, eg(Statement1, Statement2)) :-
 
 
 % AF q - every path will have q true eventually
-check(Transitions, Labels, State, U, af(Statement1, Statement2)) :-
+%check(Transitions, Labels, State, U, af(Statement1, Statement2)) :-
 
 
 % EF q - there is a path where q will eventually be true
-check(Transitions, Labels, State, U, ef(Statement1, Statement2)) :-
+%check(Transitions, Labels, State, U, ef(Statement1, Statement2)) :-
 
 
 
@@ -96,7 +96,7 @@ verify_all_adjacents(Transitions, Labels, [Adjacent|Adjacent_states], U, F) :-
 % Base case, if the state don't have any transitions (to other states)
 verify_all_adjacents(_, _, [], _, _).
 
-verify_atleast_one_adjacent(Transitions, Labels, Adjacent_states, U, F)
+verify_atleast_one_adjacent(Transitions, Labels, Adjacent_states, U, F) :-
     member(Adjacent, Adjacent_states), % Get every adjacent state
     check(Transitions, Labels, Adjacent, U, F). % Check every adjacent state til one is true or all are false
 
