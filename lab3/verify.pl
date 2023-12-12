@@ -78,7 +78,7 @@ check(Transitions, Labels, State, [], or(Statement1, Statement2)) :-
 
 
 
-% Utility methods
+% ------------Utility methods------------
 
 % Retrieves the variables that are true for a certain state
 state_variables([[State, Variables]|_], State, Variables). % Variables gets unified
@@ -94,7 +94,7 @@ verify_all_adjacents(Transitions, Labels, [Adjacent|Adjacent_states], U, F) :-
     verify_all_adjacents(Transitions, Labels, Adjacent_states, U, F). % Check if the rest of the adjacent states are true
 
 % Base case, if the state don't have any transitions (to other states)
-verify_all_adjacents(_, _, [], _, _).
+verify_atleast_one_adjacents(_, _, [], _, _).
 
 verify_atleast_one_adjacent(Transitions, Labels, Adjacent_states, U, F) :-
     member(Adjacent, Adjacent_states), % Get every adjacent state
