@@ -35,8 +35,7 @@ verify_rule([_, Statement, premise], Prems, _) :-
 
 
 % Assumption rule
-% NOT TESTED
-% Verifies that box is valid(?)
+% Verifies that a box is valid, i.e. all the lines in it are valid
 % With the box as an argument, each line is added to the previously seen lines. 
 % When backtracking (after the last line has been checked), each line is "removed" 
 % and eventually the entire box is added to the previous array in the proof iterator method
@@ -72,12 +71,6 @@ verify_rule([_, or(_, Statement), orint2(Row)], _, Previous) :-
 
 
 % Or elmination rule
-% NOT TESTED (little bit experimental, assuming Assumption rule verifies the box and tail of tail can be searched this way.)
-% verify_rule([_, Statement, orel(Row1,Row2,Row3,Row4,Row5)], _, Previous) :-
-%    member([Row1, or(A, B), _], Previous),
-%    member([Row3, Statement, _], Previous|[Row2, A, assumption]),
-%    member([Row5, Statement, _], Previous|[Row4, B, assumption]).
-
 verify_rule([_, Statement3, orel(Row1, Row2, Row3, Row4, Row5)], _, Previous) :-
     member([Row1, or(Statement1, Statement2), _], Previous), % Check if the or statement exists and what its parameters are 
     member([[Row2, Statement1, assumption]|Box1], Previous), % Check for a box that has the first parameter as statement (assumption)
@@ -144,6 +137,4 @@ verify_rule([_, Statement, pbc(Row1, Row2)], _, Previous) :-
 
 % LEM rule
 verify_rule([_, or(Statement, neg(Statement)), lem], _, _).
-
-
 
