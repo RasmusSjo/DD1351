@@ -14,7 +14,7 @@ In this course, we covered topics in mathematical logic and computer science, in
 
 <h2>Folder structure</h2>
 
-<p>There were three labs in the course, and the folders "lab 1-3" correspond to these. The instructions for each lab are contained within a PDF in each folder.</p>
+<p>There were three labs in the course, and the folders "lab 1-3" correspond to these. The instructions for each lab are contained within a PDF in each folder (.txt file for lab 1).</p>
 <ul>
   <li>Lab 1 - introductory exercises to learn the basics of the Prolog language. Each file in the folder corresponds to one of the lab exercises.</p>
   <li>Lab 2 - a natural deduction proof checker. The proof checker can be found in the "verify.pl" file. Any tests can be found either directly in the folder or in the subfolder "tests".</p>
