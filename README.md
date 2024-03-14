@@ -16,7 +16,7 @@ In this course, we covered topics in mathematical logic and computer science, in
 
 <p>There were three labs in the course, and the folders "lab 1-3" correspond to these. The instructions for each lab are contained within a PDF in each folder (.txt file for lab 1).</p>
 <ul>
-  <li>Lab 1 - introductory exercises to learn the basics of the Prolog language. Each file in the folder corresponds to one of the lab exercises.</p>
-  <li>Lab 2 - a natural deduction proof checker. The proof checker can be found in the "verify.pl" file. Any tests can be found either directly in the folder or in the subfolder "tests".</p>
-  <li>Lab 3 - a model checker for temporal logic CTL. The model checker can be found in the "verify.pl" file.</p>
+  <li>Lab 1 - introductory exercises to learn the basics of the Prolog language. Each of the .pl files in the folder corresponds to one of the lab exercises.</p>
+  <li>Lab 2 - a natural deduction proof checker. The code for the proof checker can be found in the "verify.pl" file. Tests can be found either directly in the folder or in the subfolder "tests".</p>
+  <li>Lab 3 - a model checker for temporal logic CTL. The code for the model checker can be found in the "verify.pl" file.</p>
 </ul>
